@@ -1,0 +1,57 @@
+﻿@page "/shifts/{pdid}"
+
+@if (check )
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<h3>Fee Details </h3>
+<a class="btn btn-primary" href="/programdegreedetails" role="button">Go Back</a>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" @bind="morning">
+        <label class="form-check-label" for="flexCheckChecked">
+            Morning
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @bind="evening">
+        <label class="form-check-label" for="flexCheckDefault">
+            Evening
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @bind="weekened">
+        <label class="form-check-label" for="flexCheckDefault">
+            Weekened
+        </label>
+    </div>
+    <button type="submit" @onclick="UpdateShift">Update Shift</button>
+
+
+@code {
+    [Parameter] public string? pdid { get; set; }
+    
+    private ClassLibraryEntities.EntProgramDegreeDetails ModelProgramDegreeDetails { get; set; } = new ClassLibraryEntities.EntProgramDegreeDetails();
+    public bool morning { get; set; }
+    public bool evening { get; set; }
+    public bool weekened { get; set; }
+      private bool check { get; set; } = false;
+    private string? message { get; set; }
+
+
+
+    private void UpdateShift()
+    {
+        ModelProgramDegreeDetails.Morning = morning;
+        ModelProgramDegreeDetails.Evening = evening;
+        ModelProgramDegreeDetails.Weekened = weekened;
+        ModelProgramDegreeDetails.ProgramDegreeDetailsId = pdid;
+        ModelProgramDegreeDetails.type = "shift";
+        ClassLibraryDAL.DALProgramDegreeDetails.UpdateProgramCategory(ModelProgramDegreeDetails);
+             check = true;
+        message = "Succesfully Updated Shifts  ";
+    
+    }
+
+
+}

@@ -1,0 +1,78 @@
+﻿@page "/passingdegree/{PID}"
+@using ClassLibraryDAL
+@using ClassLibraryEntities
+@inject NavigationManager nm;
+
+
+<a class="btn btn-primary" href="/passingdegrees" role="button">Go Back</a>
+<EditForm Model="_ModelPassingDegree" OnSubmit="SubmitForm">
+    <table>
+        <tr>
+            <td>
+                SSN
+            </td>
+            <td>
+                <InputText name="ID" @bind-Value="_ModelPassingDegree.PassingDegreesId" disabled></InputText>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Category Name
+            </td>
+            <td>
+                <InputText name="Name" @bind-Value="_ModelPassingDegree.Title" required></InputText>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary">@title</button>
+            </td>
+        </tr>
+
+
+    </table>
+
+
+</EditForm>
+
+@code {
+
+
+    private EntPassingDegree _ModelPassingDegree { get; set; }
+    private string? title { get; set; }
+    [Parameter] public string PID { get; set; }
+    protected override void OnInitialized()
+    {
+        if (PID == "0")
+        {
+            _ModelPassingDegree = new EntPassingDegree();
+            title = "Create New Category";
+        }
+        else
+        {
+            _ModelPassingDegree = DALPassingDegree.GetPassingDegreesById(PID);
+            title = "Update Category";
+        }
+    }
+
+    private void SubmitForm()
+    {
+        if (PID == "0")
+        {
+            DALPassingDegree.SavePassingdegrees(_ModelPassingDegree);
+            nm.NavigateTo("/passingdegrees");
+        }
+        else
+        {
+            DALPassingDegree.UpdatePassingDegrees(_ModelPassingDegree);
+            nm.NavigateTo("/passingdegrees");
+        }
+
+    }
+
+
+
+}

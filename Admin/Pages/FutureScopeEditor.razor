@@ -1,0 +1,83 @@
+﻿@page "/futurescopeeditor"
+@using Admin
+@using ClassLibraryDAL
+
+
+<h3>FutureScopeEditor</h3>
+
+
+<div class="col">
+    <select @bind="@DegreeId" class="form-select" aria-label="Default select example">
+        <option selected>Select Category</option>
+
+        @foreach (var emp in @ProgramDegreeList)
+        {
+
+            <option value="@emp.ProgramDegreeId">@emp.DegreeName</option>
+        }
+    </select>
+</div>
+
+@DegreeId
+
+<EditForm Model="@editorOptions">
+    <CKEditorBlazor Id="MyEditor1"
+                    @bind-Value=@editorOptions.InitialText
+                    UrlToPostImage="http://localhost:44301/api/qaiser/Upload">
+    </CKEditorBlazor>
+</EditForm>
+
+<button @onclick="getData" class="btn btn-primary">Submit</button>
+
+@code {
+    private List<EntProgramDegree>? ProgramDegreeList;
+    private List<EntFutureScope> FutureScopeList;
+    private List<EntFutureScope> FutureCheckList;
+    private EntFutureScope _Model { get; set; } = new EntFutureScope();
+    private string? DegreeId { get; set; }
+
+
+    EditorOptions editorOptions;
+    private string? data { get; set; }
+
+    protected override void OnInitialized()
+    {
+        LoadProgramdegree();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        editorOptions = new EditorOptions();
+        editorOptions.InitialText = "Welcome to Academia";
+
+        var txt = await Task.Run(() => 1);
+    }
+    private void LoadProgramdegree()
+    {
+        this.ProgramDegreeList = DALProgramDegree.GetProgramDegree();
+    }
+
+
+    private void getData()
+    {
+
+        data = editorOptions.InitialText.ToString();
+        _Model.Description = data;
+        _Model.ProgramDegreeId = DegreeId;
+        FutureCheckList = DALFutureScope.GetFutureScopeById(DegreeId);
+
+        if (FutureCheckList.Count == 0)
+        {
+            DALFutureScope.SaveDesciption(_Model);
+            OnInitializedAsync();
+
+        }
+        else
+        {
+            DALFutureScope.UpdateDesciption(_Model);
+            OnInitializedAsync();
+        }
+
+
+    }
+}

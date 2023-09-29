@@ -1,0 +1,93 @@
+﻿@page "/programcategories"
+@using ClassLibraryDAL
+@using ClassLibraryEntities
+<h3> Program Category</h3>
+
+<a href="/programcategory/0" class="btn btn-primary">Create Program Category</a>
+<div class="container pt-4 table-responsive">
+    <table class="table  table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Category Name</th>
+                <th>Delete</th>
+                <th>Edit</th>
+                <th>Add Program</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in @ProgramCategoriesList)
+            {
+                <tr>
+                    <td>
+                        @emp.ProgramCategoryId
+                    </td>
+                    <td>@emp.CategoryName</td>
+                    <td>
+
+
+                        <button @onclick="(e=>OpenDeleteDialog(emp.ProgramCategoryId))" class="btn btn-danger">Del</button>
+                    </td>
+                    <td>
+                        <a href="programcategory/@emp.ProgramCategoryId" class="btn btn-warning bt-sm">Edit</a>
+
+                    </td>
+                    <td>
+                        <a href="programdegree/@emp.ProgramCategoryId" class="btn btn-warning bt-sm">Add Prorgrame Degrees</a>
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
+
+@if (DeleteDialogOpen) {
+    <Modal Title="Are you sure?" FunDel="@(()=>OnDelete(@ID))"   Text="Do you want to delete" OnClose="@OnDeleteDialogClose"></Modal>
+}
+
+@code {
+
+    private List<EntProgramCategory>? ProgramCategoriesList;
+    private string? message { get; set; }
+
+       public bool check=true;
+    public string? ID { get; set; }
+    public bool DeleteDialogOpen{ get; set; }
+    private void OnDeleteDialogClose(bool accepted)
+    {
+        DeleteDialogOpen = false;
+        LaodprogramCategories();
+        StateHasChanged();
+    }
+    private void OpenDeleteDialog(string Id)
+    {
+        DeleteDialogOpen = true;
+        ID = Id;
+        StateHasChanged();
+    }
+
+
+    protected override void OnInitialized()
+    {
+        LaodprogramCategories();
+
+    }
+
+    private void OnDelete(string id)
+    {
+        DALProgramCategory.DeleteProgramCategory(id);
+        LaodprogramCategories();
+
+    }
+
+    private void LaodprogramCategories()
+    {
+        this.ProgramCategoriesList = DALProgramCategory.GetProgramCategory();
+    }
+}
+

@@ -1,0 +1,12 @@
+E:\PKVERSITY\ClassLibraryEntities\bin\Release\net7.0\ClassLibraryEntities.deps.json
+E:\PKVERSITY\ClassLibraryEntities\bin\Release\net7.0\ClassLibraryEntities.dll
+E:\PKVERSITY\ClassLibraryEntities\bin\Release\net7.0\ClassLibraryEntities.pdb
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\ClassLibraryEntities.csproj.AssemblyReference.cache
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\ClassLibraryEntities.GeneratedMSBuildEditorConfig.editorconfig
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\ClassLibraryEntities.AssemblyInfoInputs.cache
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\ClassLibraryEntities.AssemblyInfo.cs
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\ClassLibraryEntities.csproj.CoreCompileInputs.cache
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\ClassLibraryEntities.dll
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\refint\ClassLibraryEntities.dll
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\ClassLibraryEntities.pdb
+E:\PKVERSITY\ClassLibraryEntities\obj\Release\net7.0\ref\ClassLibraryEntities.dll

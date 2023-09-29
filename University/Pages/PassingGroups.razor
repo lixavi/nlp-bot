@@ -1,0 +1,136 @@
+﻿@page "/passinggroups/{pdid}"
+@attribute [Authorize(Roles = "University")]
+@using ClassLibraryDAL
+@using ClassLibraryEntities
+
+@if (check)
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+
+<h3>Passing Groups </h3>
+<a class="btn btn-primary" href="/programdegreedetails" role="button">Go Back</a>
+<table>
+
+    <div class="form-check">
+
+        @foreach (var emp in @PassingDSGroupsList)
+        {
+            @if (emp.PassingDegreeId == "1" ||  emp.PassingDegreeId =="2")
+            {
+            <tr>
+                <td>
+                    <input class="form-check-input" type="checkbox" id="flexCheckChecked" @onchange="(e => {ClassLibraryDAL.CustomLogic.CheckboxClicked(emp.PassingDSGroupsId,e.Value);})">@emp.PassingDSGroups
+                </td>
+                <td></td>
+            </tr>
+            }
+
+        }
+    </div>
+</table>
+<button type="submit" class="btn btn-primary mt-2" @onclick="UpdatePDG">Update PassingDGroups</button>
+
+
+<div class="container pt-4 table-responsive">
+    <table class="table  table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Passing DSGroups ID</th>
+                <th>Passing DSGroups </th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var emp in @PassingDSGroupsList1)
+            {
+
+                <tr>
+
+                    <td>@emp.PassingDSGroupsId</td>
+
+                    <td>@emp.PassingDSGroups</td>
+
+
+                </tr>
+
+
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+@code {
+    [Parameter] public string? pdid { get; set; }
+
+    private bool check { get; set; } = false;
+    private string? message { get; set; }
+    public string? MyList { get; set; }
+
+    private List<EntPassingDSGroups>? PassingDSGroupsList { get; set; }
+    private List<EntPassingDSGroups>? PassingDSGroupsList1 { get; set; }
+
+    private ClassLibraryEntities.EntProgramDegreeDetails ModelProgramDegreeDetails { get; set; } = new ClassLibraryEntities.EntProgramDegreeDetails();
+    public bool Group1 { get; set; }
+    public bool Group2 { get; set; }
+    public bool Group3 { get; set; }
+    public string? TotalGroups { get; set; }
+    private string? CID { get; set; }
+    public string? value1 { get; set; }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticatestate { get; set; }
+    private async Task DisplayGreeting()
+    {
+        var authState = await authenticatestate;
+        value1 = $"{authState.User.Identity.Name}";
+
+    }
+
+    private void UpdatePDG()
+    {
+
+        CheckList();
+
+        ModelProgramDegreeDetails.PassingDegreeGroups = MyList;
+        ModelProgramDegreeDetails.ProgramDegreeDetailsId = pdid;
+        ModelProgramDegreeDetails.type = "Groups";
+
+
+        ClassLibraryDAL.DALProgramDegreeDetails.UpdateProgramCategory(ModelProgramDegreeDetails);
+        
+        ClassLibraryDAL.CustomLogic.DisposeList();
+        check = true;
+        message = "Succesfully Updated Passsing Groups";
+        LaodProgramDegreeDetails();
+
+
+    }
+
+    protected override void OnInitialized()
+    {
+        DisplayGreeting();
+
+        LaodProgramDegreeDetails();
+
+        PassingDSGroupsList = DALPassingDSGroups.GetPassingDSGroups();
+    }
+
+    private void CheckList()
+    {
+        MyList = ClassLibraryDAL.CustomLogic.checklist();
+    }
+    private void LaodProgramDegreeDetails()
+    {   
+        string[] v = value1.Split(',');
+        
+        this.PassingDSGroupsList1 = ClassLibraryDAL.DALPassingDSGroups.GetGroupsById(pdid, int.Parse(v[0]));
+
+    }
+
+}

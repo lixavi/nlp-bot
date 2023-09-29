@@ -1,0 +1,90 @@
+E:\New folder\Admin\bin\Debug\net7.0\appsettings.Development.json
+E:\New folder\Admin\bin\Debug\net7.0\appsettings.json
+E:\New folder\Admin\bin\Debug\net7.0\Admin.staticwebassets.runtime.json
+E:\New folder\Admin\bin\Debug\net7.0\Admin.exe
+E:\New folder\Admin\bin\Debug\net7.0\Admin.deps.json
+E:\New folder\Admin\bin\Debug\net7.0\Admin.runtimeconfig.json
+E:\New folder\Admin\bin\Debug\net7.0\Admin.dll
+E:\New folder\Admin\bin\Debug\net7.0\Admin.pdb
+E:\New folder\Admin\bin\Debug\net7.0\AWSSDK.Core.dll
+E:\New folder\Admin\bin\Debug\net7.0\AWSSDK.S3.dll
+E:\New folder\Admin\bin\Debug\net7.0\System.Data.SqlClient.dll
+E:\New folder\Admin\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
+E:\New folder\Admin\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
+E:\New folder\Admin\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
+E:\New folder\Admin\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\New folder\Admin\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\New folder\Admin\bin\Debug\net7.0\ClassLibraryDAL.dll
+E:\New folder\Admin\bin\Debug\net7.0\ClassLibraryEntities.dll
+E:\New folder\Admin\bin\Debug\net7.0\ClassLibraryDAL.pdb
+E:\New folder\Admin\bin\Debug\net7.0\ClassLibraryEntities.pdb
+E:\New folder\Admin\obj\Debug\net7.0\Admin.csproj.AssemblyReference.cache
+E:\New folder\Admin\obj\Debug\net7.0\Admin.GeneratedMSBuildEditorConfig.editorconfig
+E:\New folder\Admin\obj\Debug\net7.0\Admin.AssemblyInfoInputs.cache
+E:\New folder\Admin\obj\Debug\net7.0\Admin.AssemblyInfo.cs
+E:\New folder\Admin\obj\Debug\net7.0\Admin.csproj.CoreCompileInputs.cache
+E:\New folder\Admin\obj\Debug\net7.0\Admin.MvcApplicationPartsAssemblyInfo.cache
+E:\New folder\Admin\obj\Debug\net7.0\Admin.RazorAssemblyInfo.cache
+E:\New folder\Admin\obj\Debug\net7.0\Admin.RazorAssemblyInfo.cs
+E:\New folder\Admin\obj\Debug\net7.0\staticwebassets\msbuild.Admin.Microsoft.AspNetCore.StaticWebAssets.props
+E:\New folder\Admin\obj\Debug\net7.0\staticwebassets\msbuild.build.Admin.props
+E:\New folder\Admin\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Admin.props
+E:\New folder\Admin\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Admin.props
+E:\New folder\Admin\obj\Debug\net7.0\staticwebassets.pack.json
+E:\New folder\Admin\obj\Debug\net7.0\staticwebassets.build.json
+E:\New folder\Admin\obj\Debug\net7.0\staticwebassets.development.json
+E:\New folder\Admin\obj\Debug\net7.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+E:\New folder\Admin\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+E:\New folder\Admin\obj\Debug\net7.0\scopedcss\bundle\Admin.styles.css
+E:\New folder\Admin\obj\Debug\net7.0\scopedcss\projectbundle\Admin.bundle.scp.css
+E:\New folder\Admin\obj\Debug\net7.0\Admin.csproj.CopyComplete
+E:\New folder\Admin\obj\Debug\net7.0\Admin.dll
+E:\New folder\Admin\obj\Debug\net7.0\refint\Admin.dll
+E:\New folder\Admin\obj\Debug\net7.0\Admin.pdb
+E:\New folder\Admin\obj\Debug\net7.0\Admin.genruntimeconfig.cache
+E:\New folder\Admin\obj\Debug\net7.0\ref\Admin.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\appsettings.Development.json
+E:\PKVERSITY\Admin\bin\Debug\net7.0\appsettings.json
+E:\PKVERSITY\Admin\bin\Debug\net7.0\Admin.staticwebassets.runtime.json
+E:\PKVERSITY\Admin\bin\Debug\net7.0\Admin.exe
+E:\PKVERSITY\Admin\bin\Debug\net7.0\Admin.deps.json
+E:\PKVERSITY\Admin\bin\Debug\net7.0\Admin.runtimeconfig.json
+E:\PKVERSITY\Admin\bin\Debug\net7.0\Admin.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\Admin.pdb
+E:\PKVERSITY\Admin\bin\Debug\net7.0\AWSSDK.Core.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\AWSSDK.S3.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\System.Data.SqlClient.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\ClassLibraryDAL.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\ClassLibraryEntities.dll
+E:\PKVERSITY\Admin\bin\Debug\net7.0\ClassLibraryDAL.pdb
+E:\PKVERSITY\Admin\bin\Debug\net7.0\ClassLibraryEntities.pdb
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.csproj.AssemblyReference.cache
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.GeneratedMSBuildEditorConfig.editorconfig
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.AssemblyInfoInputs.cache
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.AssemblyInfo.cs
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.csproj.CoreCompileInputs.cache
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.MvcApplicationPartsAssemblyInfo.cache
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.RazorAssemblyInfo.cache
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.RazorAssemblyInfo.cs
+E:\PKVERSITY\Admin\obj\Debug\net7.0\staticwebassets\msbuild.Admin.Microsoft.AspNetCore.StaticWebAssets.props
+E:\PKVERSITY\Admin\obj\Debug\net7.0\staticwebassets\msbuild.build.Admin.props
+E:\PKVERSITY\Admin\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Admin.props
+E:\PKVERSITY\Admin\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Admin.props
+E:\PKVERSITY\Admin\obj\Debug\net7.0\staticwebassets.pack.json
+E:\PKVERSITY\Admin\obj\Debug\net7.0\staticwebassets.build.json
+E:\PKVERSITY\Admin\obj\Debug\net7.0\staticwebassets.development.json
+E:\PKVERSITY\Admin\obj\Debug\net7.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+E:\PKVERSITY\Admin\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+E:\PKVERSITY\Admin\obj\Debug\net7.0\scopedcss\bundle\Admin.styles.css
+E:\PKVERSITY\Admin\obj\Debug\net7.0\scopedcss\projectbundle\Admin.bundle.scp.css
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.csproj.CopyComplete
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.dll
+E:\PKVERSITY\Admin\obj\Debug\net7.0\refint\Admin.dll
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.pdb
+E:\PKVERSITY\Admin\obj\Debug\net7.0\Admin.genruntimeconfig.cache
+E:\PKVERSITY\Admin\obj\Debug\net7.0\ref\Admin.dll

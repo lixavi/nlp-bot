@@ -1,0 +1,127 @@
+﻿@page "/typeof/{typeid}"
+@inject NavigationManager nm;
+
+
+<h3>@title</h3>
+<h3>TypeofComponent</h3>
+
+
+
+@if (check)
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<a class="btn btn-primary" href="/typeofs" role="button">Go Back</a>
+
+<EditForm Model="@_ModelTypeof" OnSubmit="SubmitForm">
+    <table>
+        <tr>
+            <td>
+                TypeOf ID
+            </td>
+            <td>
+                <InputText DisplayName="TypeOfId" @bind-Value="_ModelTypeof.TypeOfId" disabled ></InputText>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Type Of Title
+            </td>
+            <td>
+                <InputText DisplayName="Type" @bind-Value="_ModelTypeof.Type" required></InputText>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary">@title</button>
+            </td>
+        </tr>
+    </table>
+
+
+</EditForm>
+
+@code {
+
+    private EntTypes? _ModelTypeof { get; set; }
+    private List<EntTypes> TypesList;
+    private string? title { get; set; }
+    private string? message { get; set; }
+    bool check = false;
+    private int i { get; set; }
+   [Parameter] public string? typeid { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        if (typeid == "0")
+        {
+            _ModelTypeof = new EntTypes();
+            title = " New Type";
+        }
+        else
+        {
+            _ModelTypeof = DalTypes.GetTypeById(typeid);
+            title = "Update Type";
+        }
+    }
+
+    private void SubmitForm()
+    {
+
+        if (typeid == "0")
+        {
+            if (IfExist(_ModelTypeof.Type, _ModelTypeof.TypeOfId) == 0)
+            {
+                DalTypes.SaveTypeOfs(_ModelTypeof);
+                nm.NavigateTo("/typeofs");
+            }
+            else
+            {
+                check = true;
+                message = "Alread exist";
+            }
+        }
+        else
+        {
+            if (IfExist(_ModelTypeof.Type, _ModelTypeof.TypeOfId) == 0)
+            {
+                DalTypes.UpdateTypesOfs(_ModelTypeof);
+                nm.NavigateTo("/typeofs");
+            }
+            else
+            {
+
+                check = true;
+                message = "Alread exist";
+
+            }
+
+        }
+
+    }
+
+    private int IfExist(string item, string id)
+    {
+        TypesList = DalTypes.GetTypeOfs();
+
+        foreach (var emp in TypesList)
+        {
+            if (emp.Type == item || emp.TypeOfId == id)
+            {
+                i = 1;
+            }
+            else
+            {
+                i = 0;
+            }
+
+        }
+        return i;
+    }
+
+}

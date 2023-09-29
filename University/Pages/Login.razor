@@ -1,0 +1,89 @@
+﻿@page "/login"
+
+@using ClassLibraryDAL
+@using University.Authentication
+
+@inject IJSRuntime js
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager nm
+
+
+
+
+<div class=" d-flex align-items-center justify-content-center mt-5">
+    <div class="card gap-3 Login-Card" style="width: 28rem;">
+        <h3 class="text-center">Login</h3>
+
+        <input @bind="User" placeholder="userName" />
+        <input type="password" @bind="Password" placeholder="Password" />
+        <button @onclick="Authenticate" class="btn btn-primary">Login</button>
+        @if (check)
+        {
+            <p class="text-danger text-center">@Message</p>
+        }
+    </div>
+</div>
+
+@code {
+    private ClassLibraryEntities.EntInstitutes? _Model { get; set; }
+
+    public string? User { get; set; }
+    public string? Password { get; set; }
+    public string? ID { get; set; }
+    public string? Passwrd { get; set; }
+    public bool check { get; set; } = false;
+    public string? Message { get; set; }
+
+    public string DecodeFrom64(string encodedData)
+    {
+
+        System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+        System.Text.Decoder utf8Decode = encoder.GetDecoder();
+        byte[] todecode_byte = Convert.FromBase64String(encodedData);
+        int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+        char[] decoded_char = new char[charCount];
+        utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+        string result = new String(decoded_char);
+        return result;
+    }
+
+
+    private async Task Authenticate()
+    {
+
+        _Model = DALUserAcountService.GetUserByName(User);
+        _Model.UserName = User;
+        ID = _Model.InstituteId;
+        Passwrd = DecodeFrom64(_Model.Password);
+
+
+
+        if (_Model == null || Passwrd != Password)
+        {
+            check = true;
+            Message = "Invalid UserName And Password !";
+        }
+        else
+        {
+            var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
+            await customAuthStateProvider.UpdateAuthenticationState(new UserSession
+                {
+                    InstituteId = _Model.InstituteId,
+                    UserName = _Model.UserName,
+                    Role = _Model.Role
+
+                });
+
+            nm.NavigateTo("/home", true);
+        }
+
+    }
+
+
+
+
+
+    }
+
+
+

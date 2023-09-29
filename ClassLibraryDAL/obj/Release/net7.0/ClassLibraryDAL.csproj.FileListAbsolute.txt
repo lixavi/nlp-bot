@@ -1,0 +1,15 @@
+E:\PKVERSITY\ClassLibraryDAL\bin\Release\net7.0\ClassLibraryDAL.deps.json
+E:\PKVERSITY\ClassLibraryDAL\bin\Release\net7.0\ClassLibraryDAL.dll
+E:\PKVERSITY\ClassLibraryDAL\bin\Release\net7.0\ClassLibraryDAL.pdb
+E:\PKVERSITY\ClassLibraryDAL\bin\Release\net7.0\ClassLibraryEntities.dll
+E:\PKVERSITY\ClassLibraryDAL\bin\Release\net7.0\ClassLibraryEntities.pdb
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ClassLibraryDAL.csproj.AssemblyReference.cache
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ClassLibraryDAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ClassLibraryDAL.AssemblyInfoInputs.cache
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ClassLibraryDAL.AssemblyInfo.cs
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ClassLibraryDAL.csproj.CoreCompileInputs.cache
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ClassLibraryDAL.csproj.CopyComplete
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ClassLibraryDAL.dll
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\refint\ClassLibraryDAL.dll
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ClassLibraryDAL.pdb
+E:\PKVERSITY\ClassLibraryDAL\obj\Release\net7.0\ref\ClassLibraryDAL.dll

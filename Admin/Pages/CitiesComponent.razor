@@ -1,0 +1,80 @@
+﻿@page "/cities"
+@inject NavigationManager nm;
+
+
+
+
+<a href="/city/0" class="btn btn-dark bt-sm">Add City</a>
+<div class="container pt-4 table-responsive">
+<table class="table  table-bordered table-hover">
+    <thead class="table-dark">
+    <tr>
+        <th>City ID</th>
+        <th>City</th>
+        <th>City Code</th>
+        <th>Action</th>
+    </tr>
+      </thead>
+    <tbody>
+    @foreach (var emp in CitiesList)
+    {
+        <tr>
+            <td>@emp.CityId</td>
+            <td>@emp.CityName</td>
+            <td>@emp.CityCode</td>
+            <td>
+                <button @onclick="(e=>OpenDeleteDialog(emp.CityId))" class="btn btn-danger">Del</button>
+                <a href="city/@emp.CityId" class="btn btn-warning bt-sm">Edit</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+</div>
+
+
+@if (DeleteDialogOpen) {
+    <Modal Title="Are you sure?" FunDel="@(()=>OnDelete(@ID))"   Text="Do you want to delete" OnClose="@OnDeleteDialogClose"></Modal>
+}
+@code {
+
+    public bool check=true;
+    public string? ID { get; set; }
+    public bool DeleteDialogOpen{ get; set; }
+    private List<EntCities>? CitiesList;
+
+    private void OnDeleteDialogClose(bool accepted)
+    {
+        DeleteDialogOpen = false;
+        LaodCity(); ;
+        StateHasChanged();
+
+    }
+    private void OpenDeleteDialog(string? Id)
+    {
+        DeleteDialogOpen = true;
+        ID = Id;
+        StateHasChanged();
+    }
+
+
+
+    protected override void OnInitialized()
+    {
+        LaodCity();
+
+    }
+
+    private void OnDelete(string id)
+    {
+        DalCities.DeleteCities(id);
+         DeleteDialogOpen = false;
+        LaodCity();
+
+    }
+
+    private void LaodCity()
+    {
+        this.CitiesList = DalCities.GetCities();
+    }
+}

@@ -1,0 +1,34 @@
+﻿@page "/home"
+@attribute [Authorize(Roles = "University")]
+@inject IJSRuntime js
+@inject AuthenticationStateProvider authStateProvider
+@using University.Authentication
+
+
+<h2>Hello</h2>
+<h2>Welcome to @v[1] University</h2>
+
+
+@code {
+
+
+
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticatestate { get; set; }
+    public string value { get; set; }
+    public string[] v;
+    protected override void OnInitialized()
+    {
+        DisplayGreeting();
+                  v = value.Split(',');
+
+    }
+
+ private async Task DisplayGreeting()
+    {
+        var authState = await authenticatestate;
+        value = $"{authState.User.Identity.Name}";
+
+    }
+}

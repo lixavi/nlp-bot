@@ -1,0 +1,91 @@
+﻿@page "/passingdegrees"
+@using ClassLibraryDAL
+@using ClassLibraryEntities
+<h3>Program Category</h3>
+
+<a href="/passingdegree/0" class="btn btn-dark">Create Program Category</a>
+<div class="container pt-4 table-responsive">
+<table class="table  table-bordered table-hover">
+    <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Category Name</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        <th>Add Groups</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+
+    @foreach (var emp in @PassingDegreeList)
+    {
+        <tr>
+
+            <td>@emp.PassingDegreesId</td>
+
+            <td>@emp.Title</td>
+            <td>
+
+
+                <button @onclick="(e=>OpenDeleteDialog(emp.PassingDegreesId))" class="btn btn-danger ">Del</button>
+            </td>
+            <td>
+                <a href="passingdegree/@emp.PassingDegreesId" class="btn btn-warning bt-sm">Edit</a>
+
+            </td>
+            <td>
+                <a href="passingdsgroups/@emp.PassingDegreesId" class="btn btn-warning bt-sm">Add passing Degrees Group</a>
+
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>
+</div>
+
+@if (DeleteDialogOpen) {
+    <Modal Title="Are you sure?" FunDel="@(()=>OnDelete(@ID))"   Text="Do you want to delete" OnClose="@OnDeleteDialogClose"></Modal>
+}
+@code {
+
+    private List<EntPassingDegree>? PassingDegreeList;
+
+        public bool check=true;
+    public string? ID { get; set; }
+    public bool DeleteDialogOpen{ get; set; }
+    private void OnDeleteDialogClose(bool accepted)
+    {
+        DeleteDialogOpen = false;
+        LaodPassingDegree();
+        StateHasChanged();
+    }
+    private void OpenDeleteDialog(string Id)
+    {
+        DeleteDialogOpen = true;
+        ID = Id;
+        StateHasChanged();
+    }
+
+
+    protected override void OnInitialized()
+    {
+        LaodPassingDegree();
+
+    }
+
+    private void OnDelete(string id)
+    {
+        DALPassingDegree.DeletePassingDegrees(id);
+        LaodPassingDegree();
+
+    }
+
+    private void LaodPassingDegree()
+    {
+        this.PassingDegreeList = DALPassingDegree.GetPassingDegrees();
+    }
+}
+

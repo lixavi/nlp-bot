@@ -1,0 +1,45 @@
+﻿@page "/"
+@inject IJSRuntime js
+@using ClassLibraryDAL
+<PageTitle>Index</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+    </Authorized>
+    <NotAuthorized>
+        <h1> hello Guest</h1>
+    </NotAuthorized>
+</AuthorizeView>
+
+<h1>Hello, world!</h1>
+
+Welcome to PkVersity.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+    <Authorized>
+
+        @* <button @onclick="DisplayGreeting">Display </button>*@
+
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticatestate { get; set; }
+    public string? message1 { get; set; }
+    public bool check { get; set; } = true;
+
+
+
+    public string[] var { get; set; }
+    public async Task DisplayGreeting()
+    {
+
+        var authState = await authenticatestate;
+        var = authState.User.Identity.Name.Split(',');
+        await js.InvokeVoidAsync("alert", var[1]);
+
+
+    }
+}

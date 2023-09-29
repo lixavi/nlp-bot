@@ -1,0 +1,167 @@
+﻿@page "/passingdsgroups/{CategoryID}"
+@using ClassLibraryDAL
+@using ClassLibraryEntities
+@inject NavigationManager nm
+
+<a class="btn btn-primary" href="/passingdegrees" role="button">Go Back</a>
+
+<h2>@title</h2>
+<EditForm Model="_ModelPassingDSGroups" OnSubmit="SubmitForm">
+    <table>
+        <tr>
+          
+            <td>
+                <InputText PlaceHolder=" PassingDSGroupsID" name="ID" @bind-Value="_ModelPassingDSGroups.PassingDSGroupsId" disabled></InputText>
+            </td>
+       
+         
+            <td> 
+                <InputText PlaceHolder=" PassingDegreeId" name="Name" @bind-Value="_ModelPassingDSGroups.PassingDegreeId" disabled></InputText>
+            </td>
+        
+         
+            <td>
+                <InputText PlaceHolder=" PassingDSGroups"  name="Name" @bind-Value="_ModelPassingDSGroups.PassingDSGroups" required></InputText>
+            </td>
+        </tr>
+       
+        <tr>
+
+            <td>
+                <button type="submit" class="btn btn-primary">@title</button>
+            </td>
+        </tr>
+
+
+    </table>
+
+
+</EditForm>
+
+<div class="container pt-4 table-responsive">
+<table class="table  table-bordered table-hover">
+    <thead class="table-dark">
+    <tr>
+        <th>Passing DSGroups ID</th>
+        <th>Passing DSGroups</th>
+        <th>Passing Degree ID</th>
+        <th>Action</th>
+    </tr>
+     </thead>
+    <tbody>
+    @foreach (var emp in @PassingDSGroupsList)
+    {
+        if (CategoryID == emp.PassingDegreeId)
+        {
+            <tr>
+                <td>@emp.PassingDSGroupsId</td>
+                <td>@emp.PassingDSGroups</td>
+                <td>@emp.PassingDegreeId</td>
+                <td>
+                    <button @onclick="(e=>OpenDeleteDialog(emp.PassingDSGroupsId))" class="btn btn-danger ">Del</button>
+                    <button @onclick="(e=>EditFun(emp.PassingDSGroupsId))" class="btn btn-warning bt-sm">Edit</button>
+
+
+                </td>
+
+            </tr>
+        }
+    }
+
+    </tbody>
+</table>
+</div>
+
+
+
+
+@code {
+    private EntPassingDSGroups? _ModelPassingDSGroups { get; set; }
+    private string? title { get; set; }
+    private List<EntPassingDSGroups>? PassingDSGroupsList;
+    [Parameter] public string? CategoryID { get; set; }
+    bool var = true;
+
+    public bool check=true;
+    public string? ID { get; set; }
+    public bool DeleteDialogOpen{ get; set; }
+    private void OnDeleteDialogClose(bool accepted)
+    {
+        DeleteDialogOpen = false;
+        LaodPassingDSGroups();
+        StateHasChanged();
+    }
+    private void OpenDeleteDialog(string Id)
+    {
+        DeleteDialogOpen = true;
+        ID = Id;
+        StateHasChanged();
+    }
+
+
+    protected override void OnInitialized()
+    {
+        LaodPassingDSGroups();
+
+        if (var == true)
+        {
+            _ModelPassingDSGroups = new EntPassingDSGroups();
+            LaodPassingDSGroups();
+            title = "CreateNew";
+
+        }
+        else
+        {
+            _ModelPassingDSGroups = DALPassingDSGroups.GetPassingDSGroupsById(CategoryID);
+            LaodPassingDSGroups();
+            title = "Update DS";
+
+        }
+
+    }
+    private void EditFun(string id)
+    {
+        var = false;
+        _ModelPassingDSGroups = DALPassingDSGroups.GetPassingDSGroupsById(id);
+        title = "Update";
+    }
+    private void OnDelete(string id)
+    {
+        DALPassingDSGroups.DeletePassingDSGroups(id);
+        LaodPassingDSGroups();
+
+    }
+
+    private void LaodPassingDSGroups()
+    {
+        this.PassingDSGroupsList = DALPassingDSGroups.GetPassingDSGroups();
+    }
+
+   
+
+
+
+    private void SubmitForm()
+    {
+        if (var == true)
+        {
+             _ModelPassingDSGroups.PassingDegreeId = CategoryID;
+            DALPassingDSGroups.SavePassingDSGroups(_ModelPassingDSGroups);
+            
+            LaodPassingDSGroups();
+
+        }
+        else
+        {
+            DALPassingDSGroups.UpdatePassingDSGroups(_ModelPassingDSGroups);
+           
+            LaodPassingDSGroups();
+
+
+        }
+
+    }
+
+
+
+}

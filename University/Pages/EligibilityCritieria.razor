@@ -1,0 +1,94 @@
+﻿@page "/eligibility/{pdid}"
+
+
+@if (check )
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<h3>Eligibility Criteria</h3>
+<a class="btn btn-primary" href="/programdegreedetails" role="button">Go Back</a>
+<table>
+    <tr>
+        <td>
+            Matric
+        </td>
+        <td>
+
+            <select class="form-select" aria-label="Default select example" @onchange="_EditOption1">
+                <option selected>Select Criteria</option>
+                <option value="50">50 %</option>
+                <option value="60">60 %</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            FSC
+        </td>
+        <td>
+
+            <select class="form-select" aria-label="Default select example" @onchange="_EditOption2">
+                <option selected>Select Criteria</option>
+                <option value="50">50 %</option>
+                <option value="60">60 %</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            BS
+        </td>
+        <td>
+            <select class="form-select" aria-label="Default select example" @onchange="_EditOption3">
+                <option selected>Select CGPA</option>
+                <option value="2">2.5 CGPA</option>
+                <option value="3">3 CGPA</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td> <button type="submit" @onclick="UpdateEligibility">Update</button></td>
+    </tr>
+</table>
+
+@code {
+
+
+
+    private string? EditOption1 { get; set; } 
+    private string? EditOption2{ get; set; } 
+    private string? EditOption3 { get; set; } 
+    [Parameter] public string? pdid { get; set; }
+    private ClassLibraryEntities.EntProgramDegreeDetails ModelProgramDegreeDetails { get; set; } = new ClassLibraryEntities.EntProgramDegreeDetails();
+   private bool check { get; set; } = false;
+    private string? message { get; set; }
+    
+    private void _EditOption1(ChangeEventArgs e)
+    {
+        EditOption1 = e.Value as string;
+
+    }
+    private void _EditOption2(ChangeEventArgs e)
+    {
+        EditOption2 = e.Value as string;
+
+    }
+    private void _EditOption3(ChangeEventArgs e)
+    {
+        EditOption3 = e.Value as string;
+
+    }
+    private void UpdateEligibility()
+    {
+        ModelProgramDegreeDetails.Matric = EditOption1;
+        ModelProgramDegreeDetails.FSC = EditOption2;
+        ModelProgramDegreeDetails.BS = EditOption3;
+        ModelProgramDegreeDetails.ProgramDegreeDetailsId = pdid;
+        ModelProgramDegreeDetails.type = "Criteria";
+        ClassLibraryDAL.DALProgramDegreeDetails.UpdateProgramCategory(ModelProgramDegreeDetails);
+        check = true;
+        message = "Succesfully Updated Eligibility Criteria  ";
+    
+    }
+   
+}

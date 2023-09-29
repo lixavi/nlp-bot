@@ -1,0 +1,45 @@
+﻿@page "/closingmerit/{pdid}"
+@attribute [Authorize(Roles ="University")]
+
+@if (check )
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<h3>Closing Merit </h3>
+<a class="btn btn-primary" href="/programdegreedetails" role="button">Go Back</a>
+
+<EditForm Model="_ModelProgramDegreeDetail" OnSubmit="SubmitForm">
+    <table>
+        <tr>
+            <td>
+                Closing Merit (Last Year)
+            </td>
+            <td>
+                <InputText name="Name" @bind-Value="_ModelProgramDegreeDetail.ClosingMerit"></InputText>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn btn-primary" type="submit">Update Merit</button>
+            </td>
+        </tr>
+    </table>
+
+</EditForm>
+@code {
+
+    [Parameter] public string? pdid { get; set; }
+    private ClassLibraryEntities.EntProgramDegreeDetails _ModelProgramDegreeDetail { get; set; } = new ClassLibraryEntities.EntProgramDegreeDetails();
+    private string? message { get; set; }
+    private bool check { get; set; } = false;
+
+    private void SubmitForm()
+    {
+
+        _ModelProgramDegreeDetail.ProgramDegreeDetailsId = pdid;
+        _ModelProgramDegreeDetail.type = "ClosingMerit";
+        ClassLibraryDAL.DALProgramDegreeDetails.UpdateProgramCategory(_ModelProgramDegreeDetail);
+        check = true;
+        message = "Successfully Updated the Closing Merit";
+    }
+}

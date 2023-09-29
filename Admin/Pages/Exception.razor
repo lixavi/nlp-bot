@@ -1,0 +1,38 @@
+﻿@page "/exception"
+
+@using ClassLibraryEntities
+@using ClassLibraryDAL
+
+
+<div>
+    <table class="table  table-bordered table-hover">
+        <tr>
+            <th> Date / Time </th>
+            <th>Exception</th>
+        </tr>
+
+        @foreach (var emp in @ExceptionLists)
+        {
+            <tr>
+                <td>@emp.DateTime</td>
+                <td>@emp.Exception </td>
+            </tr>
+
+        }
+    </table>
+</div>
+
+@code {
+    private List<EntException> ExceptionLists { get; set; } = new List<EntException>();
+
+    protected override void OnInitialized()
+    {
+        GetException();
+    }
+
+    private void GetException()
+    {
+        ExceptionLists = DALException.GetException();
+
+    }
+}

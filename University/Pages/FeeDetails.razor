@@ -1,0 +1,73 @@
+﻿@page "/feedetails/{pdid}"
+@attribute [Authorize(Roles ="University")]
+@using ClassLibraryDAL
+@using ClassLibraryEntities
+
+
+
+@if (check )
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<h3>Fee Details </h3>
+<a class="btn btn-primary" href="/programdegreedetails" role="button">Go Back</a>
+<EditForm Model="_ModelProgramDegreeDetail" OnSubmit="SubmitForm">
+    <table>
+         
+        
+        <tr>
+            <td>
+                Total Fee
+            </td>
+            <td>
+                <InputText name="Name" @bind-Value="_ModelProgramDegreeDetail.TotalFee"></InputText>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                Semester Fee
+            </td>
+            <td>
+                <InputText name="Name" @bind-Value="_ModelProgramDegreeDetail.SemesterFee"></InputText>
+            </td>
+        </tr>
+         
+       <tr>
+            
+            <td>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </td>
+        </tr>
+
+       
+    </table>
+
+
+</EditForm>
+
+
+@code {
+
+
+    [Parameter] public string? pdid { get; set; }
+     private bool check { get; set; } = false;
+    private string? message { get; set; }
+
+    private EntProgramDegreeDetails _ModelProgramDegreeDetail { get; set; } = new EntProgramDegreeDetails();
+
+
+    
+   
+    private void SubmitForm()
+    {   _ModelProgramDegreeDetail.ProgramDegreeDetailsId = pdid;
+      _ModelProgramDegreeDetail.type = "FEE";
+         ClassLibraryDAL.DALProgramDegreeDetails.UpdateProgramCategory(_ModelProgramDegreeDetail);
+          check = true;
+        message = "Succesfully Updated Fee Details   ";
+    
+    }
+ 
+    
+
+}
+

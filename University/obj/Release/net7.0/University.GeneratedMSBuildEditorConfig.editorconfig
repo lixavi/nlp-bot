@@ -1,0 +1,113 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = University
+build_property.RootNamespace = University
+build_property.ProjectDir = E:\PKVERSITY\University\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\PKVERSITY\University
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/PKVERSITY/University/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/ApprovedBy.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwcm92ZWRCeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/ClosingMerit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xvc2luZ01lcml0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/Duration.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHVyYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/EligibilityCritieria.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWxpZ2liaWxpdHlDcml0aWVyaWEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/FeeDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmVlRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/LogoComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb0NvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/MessageComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVzc2FnZUNvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/Modal.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/PassingGroups.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFzc2luZ0dyb3Vwcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/ProfileComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZUNvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/ProgramDegreeDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZ3JhbURlZ3JlZURldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/Shifts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hpZnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/TotalSemesters.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVG90YWxTZW1lc3RlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-bmyy9px72x
+
+[E:/PKVERSITY/University/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-2n0wzhp9na
+
+[E:/PKVERSITY/University/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/PKVERSITY/University/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

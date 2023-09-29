@@ -1,0 +1,106 @@
+﻿
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1 class="text-center">Welcome to Admin Panel</h1>
+
+
+<div class="container mt-4">
+        <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card bg-primary text-light">
+                    <div class="card-body d-flex justify-content-between">
+                        <div>
+                        <h5 class="card-title">Cities</h5>
+                            <p class="card-text">@CountList.CitiesCount</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-city fs-2"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body d-flex justify-content-between">
+                            <div>
+                            <h5 class="card-title">Institutes</h5>
+                            <p class="card-text">@CountList.InstCount</p>
+                    </div>
+
+                <div>
+                        <i class="fa-solid fa-building fs-2"></i>
+            </div>
+            </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card bg-success text-light">
+                        <div class="card-body d-flex justify-content-between">
+                            <div>
+                            <h5 class="card-title">Passing Degrees</h5>
+                            <p class="card-text">@CountList.PD</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-graduation-cap fs-2"></i>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card bg-danger  text-light">
+                    <div class="card-body d-flex justify-content-between">
+                        <div>
+                    <h5 class="card-title">PassingDSGroups</h5>
+                            <p class="card-text">@CountList.PassingDSGroups</p>
+                    </div>
+                    <div>
+                        <i class="fa-brands fa-readme fs-2"></i>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card bg-warning  text-light">
+                    <div class="card-body d-flex justify-content-between">
+                        <div>
+                    <h5 class="card-title">ProgramDegrees</h5>
+                            <p class="card-text">@CountList.ProgramDegrees</p>
+                    </div>
+                    <div>
+                                                <i class="fa-solid fa-graduation-cap fs-2"></i>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card bg-dark   text-light">
+                    <div class="card-body d-flex justify-content-between">
+                        <div>
+
+                        <h5 class="card-title">Users</h5>
+                            <p class="card-text">@CountList.UserInfo</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-user fs-2"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+            </div>
+            </div>
+@code{
+    private EntCount? CountList;
+    protected override void OnInitialized()
+    {
+        LaodCount();
+
+    }
+    private void LaodCount()
+    {
+        this.CountList = DALCount.GetCount();
+    }
+}

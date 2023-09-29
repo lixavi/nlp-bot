@@ -1,0 +1,54 @@
+﻿@page "/duration/{pdid}"
+@attribute [Authorize(Roles ="University")]
+
+@if (check )
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<h3>Duration</h3>
+<a class="btn btn-primary" href="/programdegreedetails" role="button">Go Back</a>
+<table>
+    <tr>
+        <td>
+            Degree Duration
+        </td>
+        <td>
+
+            <select class="form-select" aria-label="Default select example" @onchange="_EditOption">
+                <option selected>Select Duration</option>
+                <option value="1Year">1 Year</option>
+                <option value="2Year">2 Year</option>
+                <option value="3Year">3 Year</option>
+                <option value="4Year">4 Year</option>
+                <option value="5Year">5 Year</option>
+
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td> <button type="submit" @onclick="UpdateDuration">Update</button></td>
+    </tr>
+</table>
+@code {
+    private string? EditOption { get; set; }
+    [Parameter] public string? pdid { get; set; }
+    private ClassLibraryEntities.EntProgramDegreeDetails ModelProgramDegreeDetails { get; set; } = new ClassLibraryEntities.EntProgramDegreeDetails();
+    private bool check { get; set; } = false;
+    private string? message { get; set; }
+
+    private void _EditOption(ChangeEventArgs e)
+    {
+        EditOption = e.Value as string;
+
+    }
+    private void UpdateDuration()
+    {
+        ModelProgramDegreeDetails.Duration = EditOption;
+        ModelProgramDegreeDetails.ProgramDegreeDetailsId = pdid;
+        ModelProgramDegreeDetails.type = "Duration";
+        ClassLibraryDAL.DALProgramDegreeDetails.UpdateProgramCategory(ModelProgramDegreeDetails);
+        check = true;
+        message = "Succesfully Updated Duration ";
+    }
+}

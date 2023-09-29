@@ -1,0 +1,217 @@
+﻿@page "/programdegree/{CategoryID}"
+@using ClassLibraryDAL
+@using ClassLibraryEntities
+@inject NavigationManager nm
+
+<div><h3>Program Degrees</h3></div>
+@if (check)
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<a class="btn btn-primary" href="/programcategories" role="button">Go Back</a>
+<div>
+    <EditForm Model="_ModelProgramDegree" OnSubmit="SubmintForm">
+        <table>
+            <tr>
+
+                <td>
+
+                    <InputText PlaceHolder="DID" name="ID" @bind-Value="_ModelProgramDegree.ProgramDegreeId" disabled></InputText>
+                </td>
+
+
+                <td>
+                    <InputText PlaceHolder="PCategoryID" name="Name" @bind-Value="_ModelProgramDegree.ProgramCategoryid" disabled></InputText>
+                </td>
+                <td>
+
+
+                    <InputText PlaceHolder="DegreeName" name="Name" @bind-Value="_ModelProgramDegree.DegreeName" required></InputText>
+                </td>
+
+
+                <td>
+                    <button type="submit" class="btn btn-primary">@ButtonName</button>
+                </td>
+            </tr>
+
+
+        </table>
+
+
+    </EditForm>
+</div>
+<div class="container pt-4 table-responsive">
+<table class="table  table-bordered table-hover">
+    <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Category ID</th>
+        <th>Degree Name</th>
+        <th> Delete </th>
+        <th> Edit </th>
+    </tr>
+       </thead>
+    <tbody>
+
+    @foreach (var emp in @ProgramDegreeList)
+    {
+        if (CategoryID == emp.ProgramCategoryid)
+        {
+            <tr>
+                <td>
+                    @emp.ProgramDegreeId
+                </td>
+
+                <td>@emp.ProgramCategoryid</td>
+                <td>@emp.DegreeName</td>
+                <td>
+
+
+                    <button @onclick="(e=>OpenDeleteDialog(emp.ProgramDegreeId))" class="btn btn-danger">Del</button>
+                   
+                </td>
+                <td> 
+                    <button @onclick="(e=>EditDegree(emp.ProgramCategoryid,emp.DegreeName,emp.ProgramDegreeId))" class="btn btn-warning bt-sm">Edit</button>
+
+
+                </td>
+            </tr>
+        }
+    }
+
+
+
+    </tbody>
+</table>
+
+</div>
+
+@if (DeleteDialogOpen) {
+    <Modal Title="Are you sure?" FunDel="@(()=>OnDelete(@ID))"   Text="Do you want to delete" OnClose="@OnDeleteDialogClose"></Modal>
+}
+@code {
+
+    private List<EntProgramDegree>? ProgramDegreeList;
+    [Parameter] public string? CategoryID { get; set; }
+    private EntProgramDegree? _ModelProgramDegree { get; set; }
+    private string? ButtonName { get; set; }
+    private string? message { get; set; }
+    bool check = false;
+    private int i { get; set; }
+
+
+       public bool check1=true;
+    public string? ID { get; set; }
+    public bool DeleteDialogOpen{ get; set; }
+    private void OnDeleteDialogClose(bool accepted)
+    {
+        DeleteDialogOpen = false;
+        LaodprogramDegree();
+        StateHasChanged();
+    }
+    private void OpenDeleteDialog(string Id)
+    {
+        DeleteDialogOpen = true;
+        ID = Id;
+        StateHasChanged();
+    }
+
+
+    protected override void OnInitialized()
+    {
+        _ModelProgramDegree = new EntProgramDegree();
+        LaodprogramDegree();
+
+    }
+    private void LaodprogramDegree()
+    {
+        this.ProgramDegreeList = DALProgramDegree.GetProgramDegree();
+        ButtonName = "Save";
+    }
+    private void SubmintForm()
+    {
+        if (ButtonName == "Save")
+        {
+            if (IfExist(_ModelProgramDegree.DegreeName) == 0)
+            {
+                _ModelProgramDegree.ProgramCategoryid = CategoryID;
+                DALProgramDegree.SaveProgramDegree(_ModelProgramDegree);
+                _ModelProgramDegree = new EntProgramDegree();
+                LaodprogramDegree();
+            }
+            else
+            {
+                check = true;
+                message = "Alread exist";
+            }
+
+        }
+        else
+        {
+            if (IfExist(_ModelProgramDegree.DegreeName) == 0)
+            {
+                DALProgramDegree.UpdateProgramDegree(_ModelProgramDegree);
+                _ModelProgramDegree = new EntProgramDegree();
+                LaodprogramDegree();
+            }
+            else
+            {
+                check = true;
+                message = "Alread exist";
+            }
+
+
+        }
+
+    }
+
+    private void EditDegree(string id, string degreename, string pid)
+    {
+
+        _ModelProgramDegree.DegreeName = degreename;
+        _ModelProgramDegree.ProgramCategoryid = id;
+        _ModelProgramDegree.ProgramDegreeId = pid;
+        ButtonName = "Update";
+    }
+    private void OnDelete(string id)
+    {
+        DALProgramDegree.DeleteProgramDegree(id);
+        LaodprogramDegree();
+
+    }
+
+
+    private int IfExist(string item)
+    {
+        ProgramDegreeList = DALProgramDegree.GetProgramDegree();
+
+        foreach (var emp in ProgramDegreeList)
+        {
+            if (emp.DegreeName == item)
+            {
+                i = 1;
+            }
+            else
+            {
+                i = 0;
+            }
+
+        }
+        return i;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

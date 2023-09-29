@@ -1,0 +1,123 @@
+﻿@page "/programcategory/{CategoryID}"
+@using ClassLibraryDAL
+@using ClassLibraryEntities
+@inject NavigationManager nm
+
+<h2>@title</h2>
+@if (check)
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<a class="btn btn-primary" href="/programcategories" role="button">Go Back</a>
+
+<EditForm Model="_ModelProgramCategory" OnSubmit="SubmitForm">
+    <table>
+        <tr>
+            <td>
+                SSN
+            </td>
+            <td>
+                <InputText name="ID" @bind-Value="_ModelProgramCategory.ProgramCategoryId" disabled></InputText>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Category Name
+            </td>
+            <td>
+                <InputText name="Name" @bind-Value="_ModelProgramCategory.CategoryName" required></InputText>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary">@title</button>
+            </td>
+        </tr>
+
+    </table>
+
+</EditForm>
+
+@code {
+
+
+    private List<EntProgramCategory>? ProgramCategoriesList;
+    private EntProgramCategory _ModelProgramCategory { get; set; }
+    private string? title { get; set; }
+    private int i { get; set; }
+    private string? message { get; set; }
+    bool check = false;
+    [Parameter] public string CategoryID { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (CategoryID == "0")
+        {
+            _ModelProgramCategory = new EntProgramCategory();
+            title = "Create New Category";
+        }
+        else
+        {
+            _ModelProgramCategory = DALProgramCategory.GetProgramCategoryById(CategoryID);
+            title = "Update Category";
+        }
+    }
+
+    private void SubmitForm()
+    {
+
+
+        if (CategoryID == "0")
+        {
+            if (IfExist(_ModelProgramCategory.CategoryName) == 0)
+            {
+                DALProgramCategory.SaveProgramCategory(_ModelProgramCategory);
+                nm.NavigateTo("/programcategories");
+            }
+            else
+            {
+                check = true;
+                message = "Alread exist";
+            }
+
+
+        }
+        else
+        {
+            if (IfExist(_ModelProgramCategory.CategoryName) == 0)
+            {
+                DALProgramCategory.UpdateProgramCategory(_ModelProgramCategory);
+                nm.NavigateTo("/programcategories");
+            }
+            else
+            {
+                check = true;
+                message = "Alread exist";
+            }
+
+        }
+
+    }
+
+    private int IfExist(string item)
+    {
+        ProgramCategoriesList = DALProgramCategory.GetProgramCategory();
+
+        foreach (var emp in ProgramCategoriesList)
+        {
+            if (emp.CategoryName == item)
+            {
+                i = 1;
+            }
+            else
+            {
+                i = 0;
+            }
+
+        }
+        return i;
+    }
+
+}

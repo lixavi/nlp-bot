@@ -1,0 +1,72 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Admin</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="programcategories" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Program Category
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="cities" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> cities
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="institutes" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> institutes
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="typeofs" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> typeofs
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="passingdegrees" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Passing Degree
+            </NavLink>
+        </div>
+
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="futurescopeeditor" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span>Future Scope Editor
+            </NavLink>
+        </div>
+
+              <div class="nav-item px-3">
+            <NavLink class="nav-link" href="exception" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span>Exceptions
+            </NavLink>
+        </div>
+
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

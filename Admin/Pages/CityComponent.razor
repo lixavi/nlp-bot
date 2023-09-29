@@ -1,0 +1,134 @@
+﻿@page "/city/{cityid}"
+@inject NavigationManager nm;
+
+
+<h3>@title</h3>
+
+<h3>City </h3>
+
+@if (check)
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<a class="btn btn-primary" href="/cities" role="button">Go Back</a>
+<EditForm Model="_ModelCity" OnSubmit="SubmitForm">
+    <table>
+        <tr>
+            <td>
+                City ID
+            </td>
+            <td>
+                <InputText DisplayName="CityId" @bind-Value="_ModelCity.CityId" disabled></InputText>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                City Name
+            </td>
+            <td>
+                <input DisplayName="CityName" @bind="_ModelCity.CityName" required></input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                City Code
+            </td>
+            <td>
+                <input type="number" DisplayName="CityCode" @bind="_ModelCity.CityCode" required></input>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary">@title</button>
+            </td>
+        </tr>
+    </table>
+
+
+</EditForm>
+
+
+@code {
+    private List<EntCities>? CitiesList;
+    private EntCities? _ModelCity { get; set; }
+    private string? title { get; set; }
+    private string? message { get; set; }
+    private string? var { get; set; }
+    bool check = false;
+    private int i { get; set; }
+
+    [Parameter] public string? cityid { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+
+        if (cityid == "0")
+        {
+            _ModelCity = new EntCities();
+            title = " New City";
+        }
+        else
+        {
+            _ModelCity = DalCities.GetCityById(cityid);
+            title = "Update City";
+        }
+    }
+
+    private void SubmitForm()
+    {
+
+        if (cityid == "0")
+        {
+            if (IfExist(_ModelCity.CityName, _ModelCity.CityCode) == 0)
+            {
+                DalCities.SaveCities(_ModelCity);
+                nm.NavigateTo("/cities");
+            }
+            else
+            {
+
+                check = true;
+                message = "Alread exist";
+            }
+        }
+        else
+        {
+
+            DalCities.UpdateCities(_ModelCity);
+            nm.NavigateTo("/cities");
+
+        }
+
+    }
+
+
+    private int IfExist(string? item, string? id)
+    {
+        CitiesList = DalCities.GetCities();
+
+        foreach (var emp in CitiesList)
+        {
+            if (emp.CityName == item || emp.CityCode == id)
+            {
+                i = 1;
+            }
+            else
+            {
+                i = 0;
+            }
+
+        }
+        return i;
+    }
+
+
+
+
+}
+
+

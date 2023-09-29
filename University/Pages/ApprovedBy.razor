@@ -1,0 +1,43 @@
+﻿@page "/approvedby/{pdid}"
+@attribute [Authorize(Roles ="University")]
+@if (check )
+{
+    <MessageComponent CustomMessage="@message"></MessageComponent>
+}
+<h2>Approved By</h2>
+<a class="btn btn-primary" href="/programdegreedetails" role="button">Go Back</a>
+ <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" @bind="hec">
+        <label class="form-check-label" for="flexCheckChecked">
+            HEC
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @bind="pec">
+        <label class="form-check-label" for="flexCheckDefault">
+            PEC
+        </label>
+    </div>
+    <button class="btn btn-primary" type="submit" @onclick="Approved">Update </button>
+
+@code {
+    [Parameter] public string? pdid { get; set; }
+    private ClassLibraryEntities.EntProgramDegreeDetails ModelProgramDegreeDetails { get; set; } = new ClassLibraryEntities.EntProgramDegreeDetails();
+    public bool hec { get; set; }
+    public bool pec { get; set; }
+    private string? ApprovedByID { get; set; }
+       private bool check { get; set; } = false;
+    private string? message { get; set; }
+
+    private void Approved()
+    {
+       
+        ApprovedByID=hec.ToString()+","+pec.ToString(); 
+        ModelProgramDegreeDetails.ApprovedById = ApprovedByID;
+        ModelProgramDegreeDetails.ProgramDegreeDetailsId = pdid;
+        ModelProgramDegreeDetails.type = "Approvedby";
+        ClassLibraryDAL.DALProgramDegreeDetails.UpdateProgramCategory(ModelProgramDegreeDetails);
+          check = true;
+        message = "Succesfully Updated Approved By   ";
+    }
+}
